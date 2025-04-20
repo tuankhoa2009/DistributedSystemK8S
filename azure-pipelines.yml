@@ -50,10 +50,11 @@ steps:
     ArtifactName: 'drop'
 
 # Deploy lên Azure App Service
+
 - task: AzureWebApp@1
-  displayName: 'Deploy to Azure Web App'
   inputs:
-    azureSubscription: 'AzureConnection'  # 👈 Tên service connection bạn đã tạo
-    appType: 'webApp'
-    appName: 'command-api'      # 👈 Tên Azure App Service
-    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    azureSubscription: 'Azure subscription 1(5dd8c1c0-7f38-4954-90cc-5b3de6961ae3)'
+    appType: 'webAppLinux'
+    appName: 'command-api'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    runtimeStack: 'DOTNETCORE|7.0'
