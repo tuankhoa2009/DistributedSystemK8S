@@ -57,4 +57,3 @@ steps:
     appType: 'webAppLinux'
     appName: 'command-api'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    runtimeStack: 'DOTNETCORE|7.0'
