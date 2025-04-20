@@ -1,0 +1,29 @@
+﻿version:  '3.8'
+
+
+services:
+  commanddb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+  redisdb:
+    image: redis:alpine
+
+#microservices api section
+  command.api:
+    image: command-api
+    build:
+      context: .
+      dockerfile: src/DistributedSystem.API/Dockerfile  
+
+#network section
+networks:
+  default:
+    name: netcore_distributedsystem
+    driver: bridge
+
+
+#volumes section
+volumes:
+  sqlserver_data:
+    name: sqlserver_data

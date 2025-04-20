@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  commanddb:
+    container_name: commanddb
+    environment:
+      SA_PASSWORD: "P@ssword"
+      ACCEPT_EULA: "Y"
+    restart: always
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    ports:
+      - "1435:1433"
+
+  redisdb:
+    container_name: redisdb
+    restart: always
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+#microservices api sections
+  command.api:
+    container_name: command.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - "ConnectionStrings:ConnectionStrings=Server=commanddb;Database=DistributedSystemDatabase;User Id=sa;Password=P@ssword;TrustServerCertificate=True" 
+      - "ConnectionStrings:Redis=redisdb"
+      - "JwtOption:Issuer=http://localhost:6000"
+      - "JwtOption:Audience=http://localhost:6000"
+      - "JwtOption:SecretKey=oEZqUKrrKDKP7A9OtrB4GfPGJ92vLDpK"
+      - "JwtOption:ExpireMin=5"
+      - "MasstransitConfiguration:Host=amqp://guest:guest@rabbitmq:5672"
+      - "MasstransitConfiguration:VHost=/"
+      - "MasstransitConfiguration:Port=5672"
+      - "MasstransitConfiguration:UserName=guest"
+      - "MasstransitConfiguration:Password=guest"
+      - "MessageBusOptions:retryLimit=3"
+      - "MessageBusOptions:initialInterval=00:00:05"
+      - "MessageBusOptions:intervalIncrement=00:00:10"
+    depends_on: 
+      - commanddb
+      - rabbitmq
+    ports:
+      - "7001:80"
+    restart: always
+
