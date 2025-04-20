@@ -55,5 +55,5 @@ steps:
   inputs:
     azureSubscription: 'AzureConnection'  # 👈 Tên service connection bạn đã tạo
     appType: 'webApp'
-    appName: 'your-app-service-name'      # 👈 Tên Azure App Service
+    appName: 'command-api'      # 👈 Tên Azure App Service
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
