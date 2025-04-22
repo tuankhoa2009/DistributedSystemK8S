@@ -1,4 +1,4 @@
-using Carter;
+﻿using Carter;
 using DistributedSystem.API.DependencyInjection.Extensions;
 using DistributedSystem.API.Middleware;
 using DistributedSystem.Application.DependencyInjection.Extensions;
@@ -69,14 +69,14 @@ builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var contextSeed = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    if (contextSeed.Database.IsSqlServer())
-    {
-        await contextSeed.Database.MigrateAsync();
-    }
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var contextSeed = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+//    if (contextSeed.Database.IsSqlServer())
+//    {
+//        await contextSeed.Database.MigrateAsync();
+//    }
+//}
 
 // Using middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
@@ -88,7 +88,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseSwaggerAPI(); // => After MapCarter => Show Version
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
@@ -103,7 +103,9 @@ try
 {
 
  var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
- app.Urls.Add($"http://*:{port}");
+ //app.Urls.Add($"http://*:{port}");
+ app.Urls.Add($"http://0.0.0.0:{port}"); 
+
 
  await app.RunAsync();
 Log.Information("Stopped cleanly");
