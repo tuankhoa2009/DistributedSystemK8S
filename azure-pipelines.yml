@@ -59,4 +59,4 @@ steps:
     azureSubscription: 'Azure subscription 1(5dd8c1c0-7f38-4954-90cc-5b3de6961ae3)'
     appType: 'webAppLinux'
     appName: 'command-api'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
