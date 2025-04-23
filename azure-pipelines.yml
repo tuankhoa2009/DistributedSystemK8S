@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: 'a5e8d59a-28ac-4e25-84f2-075f9c56fb66'
   imageRepository: 'commandapi'
   containerRegistry: 'distributedk8s.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: '**/src/DistributedSystem.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'distributedk8scc70-auth'
 
