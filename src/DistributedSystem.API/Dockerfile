@@ -15,7 +15,7 @@ COPY ["src/DistributedSystem.Domain/DistributedSystem.Domain.csproj", "Distribut
 COPY ["src/DistributedSystem.Persistence/DistributedSystem.Persistence.csproj", "DistributedSystem.Persistence/"]
 COPY ["src/DistributedSystem.Presentation/DistributedSystem.Presentation.csproj", "DistributedSystem.Presentation/"]
 RUN dotnet restore "DistributedSystem.API/DistributedSystem.API.csproj"
-COPY src/ .
+COPY ./src/ .
 WORKDIR "/src/DistributedSystem.API"
 RUN dotnet build "DistributedSystem.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
