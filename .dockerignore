@@ -15,8 +15,6 @@
 **/bin
 **/charts
 **/docker-compose*
-/Dockerfile*
-!src/DistributedSystem.API/Dockerfile
 **/node_modules
 **/npm-debug.log
 **/obj
