@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: tuankhoa2009commandapiv1
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 80 
+    selector:
+        app: tuankhoa2009commandapiv1
