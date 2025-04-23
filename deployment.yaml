@@ -12,42 +12,34 @@ spec:
       labels:
         app: command-api-kubenetes
     spec:
-      hostAliases:
-      - ip: "192.168.1.4"
-        hostnames:
-        - "host.k8s.internal"
       containers:
       - name: command-api
         image: tuankhoa2009/command-api:v1
         ports:
         - containerPort: 80
         env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
-        - name: ASPNETCORE_URLS
-          value: "http://0.0.0.0:80"
         - name: ConnectionStrings__ConnectionStrings
-          value: "Data Source=192.168.1.4,1435;Initial Catalog=DistributedSystemDatabase;User id=sa;Password=P@ssword; TrustServerCertificate=True"  
+          value: "Server=tcp:commanddb.database.windows.net,1433;Initial Catalog=DistributedSystemDatabase;Persist Security Info=False;User ID=tuankhoa2009;Password=P@ssword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"  
         - name: ConnectionStrings__Redis
-          value: "192.168.1.4:6379"
+          value: "redis-13012.c53.west-us.azure.redns.redis-cloud.com:13012,password=QC31L8XwNPbjabdvyKvONaXYvT15J4af,abortConnect=False"
         - name: JwtOption__Issuer
-          value: "http://192.168.1.4:6000"
+          value: "https://command-api.azurewebsites.net"
         - name: JwtOption__Audience
-          value: "http://192.168.1.4:6000"
+          value: "https://command-api.azurewebsites.net"
         - name: JwtOption__SecretKey
           value: "oEZqUKrrKDKP7A9OtrB4GfPGJ92vLDpK"
         - name: JwtOption__ExpireMin
           value: "5"
         - name: MasstransitConfiguration__Host
-          value: "amqp://guest:guest@192.168.1.4:5672"
+          value: "amqps://wddwqrcb:6SgxhRFiJWQ5WEJL37lvF9UFcFJEl-nX@gerbil.rmq.cloudamqp.com/wddwqrcb"
         - name: MasstransitConfiguration__VHost
           value: "/"
         - name: MasstransitConfiguration__Port
           value: "5672"
         - name: MasstransitConfiguration__UserName
-          value: "guest"
+          value: "wddwqrcb"
         - name: MasstransitConfiguration__Password
-          value: "guest"
+          value: "6SgxhRFiJWQ5WEJL37lvF9UFcFJEl-nX"
         - name: MessageBusOptions__retryLimit
           value: "3"
         - name: MessageBusOptions__initialInterval
@@ -60,10 +52,9 @@ kind: Service
 metadata:
   name: command-api-service
 spec:
-  type: NodePort  
+  type: LoadBalancer  
   selector:
     app: command-api-kubenetes
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30080
