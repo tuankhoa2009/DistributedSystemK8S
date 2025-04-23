@@ -17,11 +17,11 @@ COPY ["DistributedSystem.Presentation/DistributedSystem.Presentation.csproj", "D
 RUN dotnet restore "DistributedSystem.API/DistributedSystem.API.csproj"
 COPY . .
 WORKDIR "/src/DistributedSystem.API"
-RUN dotnet build "./DistributedSystem.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "DistributedSystem.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./DistributedSystem.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "DistributedSystem.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
