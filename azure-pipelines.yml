@@ -35,9 +35,11 @@ stages:
     - checkout: self
       fetchDepth: 0
     - script: |
-        echo "🔍 Build context content ==="
-        find $(Build.SourcesDirectory) -name "*.csproj" -o -name "Dockerfile"
-      displayName: "🔎 Verify Docker context content"
+        echo "=== Current directory ==="
+        pwd
+        echo "=== Listing contents ==="
+        ls -R $(Build.SourcesDirectory)/src
+      displayName: "🔍 Debug: List build context content"
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
