@@ -49,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthorizationApi", "src\Aut
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Item", "Item", "{3CB82A57-42B0-4FC6-BF95-FB5F8863B319}"
 	ProjectSection(SolutionItems) = preProject
-		deploy.yaml = deploy.yaml
+		deployment.yaml = deployment.yaml
 		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.yml = docker-compose.yml
 		TextFile1.txt = TextFile1.txt
