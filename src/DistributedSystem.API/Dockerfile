@@ -7,13 +7,13 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["DistributedSystem.API/DistributedSystem.API.csproj", "DistributedSystem.API/"]
+COPY ["src/DistributedSystem.API/DistributedSystem.API.csproj", "DistributedSystem.API/"]
 COPY ["DistributedSystem.Infrastructure/DistributedSystem.Infrastructure.csproj", "DistributedSystem.Infrastructure/"]
-COPY ["DistributedSystem.Application/DistributedSystem.Application.csproj", "DistributedSystem.Application/"]
-COPY ["DistributedSystem.Contract/DistributedSystem.Contract.csproj", "DistributedSystem.Contract/"]
-COPY ["DistributedSystem.Domain/DistributedSystem.Domain.csproj", "DistributedSystem.Domain/"]
-COPY ["DistributedSystem.Persistence/DistributedSystem.Persistence.csproj", "DistributedSystem.Persistence/"]
-COPY ["DistributedSystem.Presentation/DistributedSystem.Presentation.csproj", "DistributedSystem.Presentation/"]
+COPY ["src/DistributedSystem.Application/DistributedSystem.Application.csproj", "DistributedSystem.Application/"]
+COPY ["src/DistributedSystem.Contract/DistributedSystem.Contract.csproj", "DistributedSystem.Contract/"]
+COPY ["src/DistributedSystem.Domain/DistributedSystem.Domain.csproj", "DistributedSystem.Domain/"]
+COPY ["src/DistributedSystem.Persistence/DistributedSystem.Persistence.csproj", "DistributedSystem.Persistence/"]
+COPY ["src/DistributedSystem.Presentation/DistributedSystem.Presentation.csproj", "DistributedSystem.Presentation/"]
 RUN dotnet restore "DistributedSystem.API/DistributedSystem.API.csproj"
 COPY . .
 WORKDIR "/src/DistributedSystem.API"
