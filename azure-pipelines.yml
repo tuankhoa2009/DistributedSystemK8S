@@ -35,6 +35,12 @@ stages:
     - checkout: self
       fetchDepth: 0
     - script: |
+        echo "=== Check Disk Space ==="
+        df -h  # Lệnh hiển thị dung lượng đĩa trống trên hệ thống Linux
+        echo "=== Current Directory Disk Space ==="
+        df -h . # Lệnh hiển thị dung lượng đĩa trống tại thư mục hiện tại (thường là thư mục làm việc của job)
+      displayName: '🔍 Debug: Check Disk Space'
+    - script: |
         echo "=== Current directory ==="
         pwd
         echo "=== Listing contents ==="
