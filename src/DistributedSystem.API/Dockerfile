@@ -13,7 +13,7 @@ COPY src/DistributedSystem.Application/DistributedSystem.Application.csproj Dist
 COPY src/DistributedSystem.Contract/DistributedSystem.Contract.csproj DistributedSystem.Contract
 COPY src/DistributedSystem.Domain/DistributedSystem.Domain.csproj DistributedSystem.Domain
 COPY src/DistributedSystem.Persistence/DistributedSystem.Persistence.csproj DistributedSystem.Persistence
-COPY src/DistributedSystem.Presentation/DistributedSystem.Presentation.csproj DistributedSystem.Presentation
+#COPY src/DistributedSystem.Presentation/DistributedSystem.Presentation.csproj DistributedSystem.Presentation
 RUN dotnet restore "DistributedSystem.API/DistributedSystem.API.csproj"
 COPY . .
 WORKDIR "/src/DistributedSystem.API"
