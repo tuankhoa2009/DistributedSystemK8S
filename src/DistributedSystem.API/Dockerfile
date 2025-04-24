@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY src/DistributedSystem.API/DistributedSystem.API.csproj DistributedSystem.API/
-COPY DistributedSystem.Infrastructure/DistributedSystem.Infrastructure.csproj DistributedSystem.Infrastructure
+#COPY DistributedSystem.Infrastructure/DistributedSystem.Infrastructure.csproj DistributedSystem.Infrastructure
 COPY src/DistributedSystem.Application/DistributedSystem.Application.csproj DistributedSystem.Application
 COPY src/DistributedSystem.Contract/DistributedSystem.Contract.csproj DistributedSystem.Contract
 COPY src/DistributedSystem.Domain/DistributedSystem.Domain.csproj DistributedSystem.Domain
